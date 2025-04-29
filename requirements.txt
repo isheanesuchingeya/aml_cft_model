@@ -1,0 +1,10 @@
+streamlit
+pandas
+numpy
+openpyxl
+pyjanitor
+matplotlib
+seaborn
+Pillow
+fuzzywuzzy
+python-Levenshtein  # Optional for faster fuzzy matching
