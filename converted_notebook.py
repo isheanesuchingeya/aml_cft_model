@@ -664,10 +664,24 @@ sheet_names = {
     "Inter_grouped_df": "Intermed"
 }
 
-with pd.ExcelWriter("combined_summaries_results.xlsx") as writer:
+# Create the Excel file
+excel_file = "combined_summaries_results.xlsx"
+with pd.ExcelWriter(excel_file) as writer:
     for name, df in combined_summaries_workbook.items():
         if not df.empty:
             df.to_excel(writer, sheet_name=sheet_names[name], index=False)
+
+# Streamlit app
+st.title("Download Excel File")
+
+# Button to download the Excel file
+with open(excel_file, "rb") as f:
+    st.download_button(
+        label="Download Summaries Excel File",
+        data=f,
+        file_name=excel_file,
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
 
 
 
