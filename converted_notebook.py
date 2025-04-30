@@ -143,12 +143,7 @@ if uploaded_files:
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
 
-        
-    st.divider()
-st.caption(f"App runtime: {round(time.time() - start_time, 2)} seconds.")
-
-
-        
+            
   ###################################################################################################################################      
 xls = pd.ExcelFile(output)
 Inter_df = pd.DataFrame()
@@ -586,6 +581,7 @@ customers_summary_df = customers_summary_df.groupby('customers')[numeric_columns
 
 
 #############################################################################################################################################################
+st.write("## Overview Dashboard 📊")
 # Sort DataFrames
 top_zwl_df = products_summary_df.sort_values("total amount ZWL", ascending=False).head(5)
 top_usd_df = products_summary_df.sort_values("total amount USD", ascending=False).head(5)
@@ -771,6 +767,10 @@ st.download_button(
     file_name="AML_CFT_Report_Third_Quarter_2024.docx",
     mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 )
+
+
+st.divider()
+st.caption(f"App runtime: {round(time.time() - start_time, 2)} seconds.")
 #################################################################################################################################################################
 
 
