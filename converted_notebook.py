@@ -641,7 +641,7 @@ st.write("## Mode of Payment by Customer for Products and Services Provided 💳
 st.write(payment_mode_summary_df)
 
 
-st.write("## Suspicious and Large Cash Transaction Reports 🚨 (year to date
+st.write("## Suspicious and Large Cash Transaction Reports 🚨 (year to date))
 st.write(cash_trans_summary_df)
 
 
