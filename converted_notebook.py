@@ -629,7 +629,11 @@ st.pyplot(fig)  # Use st.pyplot to show the figure in Streamlit
 
 
 
+import pandas as pd
+import streamlit as st
+from io import BytesIO
 
+# Your DataFrames dictionary
 combined_summaries_workbook = {
     "customers_combined_df": customers_combined_df,
     "customers_summary_df": customers_summary_df,
@@ -647,6 +651,7 @@ combined_summaries_workbook = {
     "Inter_grouped_df": Inter_grouped_df
 }
 
+# Sheet names
 sheet_names = {
     "customers_combined_df": "Customers",
     "customers_summary_df": "Cust_Sum",
@@ -664,24 +669,24 @@ sheet_names = {
     "Inter_grouped_df": "Intermed"
 }
 
-# Create the Excel file
-excel_file = "combined_summaries_results.xlsx"
-with pd.ExcelWriter(excel_file) as writer:
-    for name, df in combined_summaries_workbook.items():
-        if not df.empty:
-            df.to_excel(writer, sheet_name=sheet_names[name], index=False)
-
 # Streamlit app
-st.title("Download Excel File")
+st.title("Download Summaries Excel File")
 
-# Button to download the Excel file
-with open(excel_file, "rb") as f:
-    st.download_button(
-        label="Download Summaries Excel File",
-        data=f,
-        file_name=excel_file,
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
+# Create the Excel file in memory
+output = BytesIO()
+with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+    for name, df in combined_summaries_workbook.items():
+        # Even if df is empty, create the sheet (optional: you can skip empty dfs if you prefer)
+        if df is not None:
+            df.to_excel(writer, sheet_name=sheet_names.get(name, name), index=False)
+output.seek(0)  # Reset pointer to the beginning
 
+# Download button
+st.download_button(
+    label="📥 Download Summaries Excel File",
+    data=output,
+    file_name="combined_summaries_results.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
 
 
