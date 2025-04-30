@@ -18,7 +18,7 @@ from fuzzywuzzy import process  # Needed for fuzzy matching
 import contextlib
 
 # ---------------------------- PAGE CONFIG ----------------------------
-st.set_page_config(page_title="Excel Consolidator", layout="wide", page_icon="📂")
+st.set_page_config(page_title="AML CFT", layout="wide", page_icon="🛡️💵🔍🚫")
 
 st.markdown("""
     <style>
