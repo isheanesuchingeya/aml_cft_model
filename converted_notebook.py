@@ -81,6 +81,16 @@ if submenu == "👤 Customers":
     st.header("👤 Customer Analysis")
 
     # File uploader
+import streamlit as st
+import openpyxl
+from openpyxl import load_workbook
+from openpyxl.utils.exceptions import InvalidFileException
+from io import BytesIO
+import copy
+import os
+import contextlib
+
+# File uploader
 uploaded_files = st.file_uploader("Upload Excel files (.xlsx)", type=["xlsx"], accept_multiple_files=True)
 
 if uploaded_files:
@@ -125,7 +135,7 @@ if uploaded_files:
     output.seek(0)
 
     # Suppress output display
-    with contextlib.redirect_stdout(BytesIO()):
+    with contextlib.redirect_stdout(open(os.devnull, 'w')):
         st.download_button(
             label="📥 Download Combined Workbook",
             data=output,
@@ -133,17 +143,6 @@ if uploaded_files:
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
 
-        # -------------------- Download Combined File --------------------
-        output = BytesIO()
-        combined_workbook.save(output)
-        output.seek(0)
-        st.write(output)
-        st.download_button(
-            label="📥 Download Combined Workbook",
-            data=output,
-            file_name="combined_workbook.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
         
     st.divider()
 st.caption(f"App runtime: {round(time.time() - start_time, 2)} seconds.")
