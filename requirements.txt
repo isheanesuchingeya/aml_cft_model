@@ -9,3 +9,5 @@ Pillow
 fuzzywuzzy
 python-Levenshtein  # Optional for faster fuzzy matching
 XlsxWriter
+python-docx
+
