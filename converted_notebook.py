@@ -686,18 +686,18 @@ sheet_names = {
 st.title("Download Summaries Excel File")
 
 # Create the Excel file in memory
-output = BytesIO()
+output_summaries = BytesIO()
 with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
     for name, df in combined_summaries_workbook.items():
         # Even if df is empty, create the sheet (optional: you can skip empty dfs if you prefer)
         if df is not None:
             df.to_excel(writer, sheet_name=sheet_names.get(name, name), index=False)
-output.seek(0)  # Reset pointer to the beginning
+output_summaries.seek(0)  # Reset pointer to the beginning
 
 # Download button
 st.download_button(
     label="📥 Download Summaries Excel File",
-    data=output,
+    data=output_summaries,
     file_name="combined_summaries_results.xlsx",
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
