@@ -623,14 +623,14 @@ with col2:
 
 
 
-# Bar chart below the pie charts
+st.write("ZiG and USD business by client risk categories")
 filtered_df = customers_summary_df[
     (customers_summary_df["total amount ZWL"] > 0) | 
     (customers_summary_df["total amount USD"] > 0)
 ]
 x = np.arange(len(filtered_df))
 width = 0.35  
-fig3, ax3 = plt.subplots(figsize=(8, 4))  # Adjusted size for the bar chart
+fig3, ax3 = plt.subplots(figsize=(6, 4))  # Adjusted size for the bar chart
 bar1 = ax3.bar(x - width/2, filtered_df["total amount ZWL"] / 1e9, width, label='ZiG', color='blue')
 bar2 = ax3.bar(x + width/2, filtered_df["total amount USD"] / 1e6, width, label='USD', color='red')
 
@@ -729,8 +729,6 @@ st.download_button(
     file_name="combined_summaries_results.xlsx",
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
-
-
 ##################################################################################################################################################################
 import random
 from docx import Document
