@@ -142,8 +142,6 @@ if uploaded_files:
             file_name="combined_workbook.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
-
-            
   ###################################################################################################################################      
 xls = pd.ExcelFile(output)
 Inter_df = pd.DataFrame()
@@ -772,6 +770,36 @@ st.download_button(
 st.divider()
 st.caption(f"App runtime: {round(time.time() - start_time, 2)} seconds.")
 #################################################################################################################################################################
+
+
+# Sidebar for Downloads
+st.sidebar.header("Download Section")
+st.sidebar.subheader("Available Reports")
+
+# Download button for Combined Workbook
+st.sidebar.download_button(
+    label="📥 Download Combined Workbook",
+    data=output,
+    file_name="combined_workbook.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
+
+# Download button for Word Report
+st.sidebar.download_button(
+    label="📄 Download Word Report",
+    data=word_stream,
+    file_name="AML_CFT_Report_Third_Quarter_2024.docx",
+    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+)
+
+# Download button for Summaries Excel File
+st.sidebar.download_button(
+    label="📥 Download Summaries Excel File",
+    data=output_summaries,
+    file_name="combined_summaries_results.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
+
 
 
 
