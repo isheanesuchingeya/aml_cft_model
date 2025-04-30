@@ -197,11 +197,9 @@ Inter_grouped_df = Inter_grouped_df.groupby('use of intermediaries')[numeric_col
 
 
 Inter_grouped_df = Inter_grouped_df.reset_index()
-st.write(Inter_df.head())
-st.write(Inter_grouped_df)
+
 
 ################################################################################################################################
-st.write("Geographic Location of Clients (as at the end of the reporting period)")
 xls = pd.ExcelFile(output)
 geoloc_df = pd.DataFrame()
 
@@ -261,12 +259,10 @@ summary_geoloc_df = geoloc_df[geoloc_df['Geographic location of Clients'].apply(
 
 # Ensure numeric columns are summed and non-numeric columns are handled separately
 summary_geoloc_df = summary_geoloc_df.groupby('Geographic location of Clients')[numeric_columns].sum()
-st.write(geoloc_df)
-st.write(summary_geoloc_df)
+
 
 
 ##########################################################################################################################################
-st.write("Products & Services Offered (as at the end of the reporting period)")
 products_combined_df = pd.DataFrame()
 # Specify the group names that we want to filter by
 group_names = [' Services ', ' Tombstone ',' Savings ', ' other ',' Annuities ', ' Guaranteed Education Plan ',' Whole Life ', ' Finance ',' Endowment ','  Pension', ' Education',' Credit',' Funeral ',' GLA ','Legal', ' Group Life',' Funds ','Ecosure']
@@ -324,10 +320,8 @@ products_summary_df = products_combined_df[products_combined_df['Products'].appl
 
 # Ensure numeric columns are summed and non-numeric columns are handled separately
 products_summary_df = products_summary_df.groupby('Products')[numeric_columns].sum().reset_index()
-st.write(products_summary_df)
 ##################################################################################################################################
 # Initialize an empty DataFrame
-st.write(" Source of Funds")
 source_of_funds_consolidated_df = pd.DataFrame()
 
 # Specify the group names that we want to filter by
@@ -387,11 +381,9 @@ source_of_funds_summary_df = source_of_funds_consolidated_df[source_of_funds_con
 
 # Ensure numeric columns are summed and non-numeric columns are handled separately
 source_of_funds_summary_df = source_of_funds_summary_df.groupby('Source of funds')[numeric_columns].sum()
-st.write(source_of_funds_summary_df)
 
 #######################################################################################################################################
 # Initialize an empty DataFrame
-st.write("Mode of Payment by Customer for Products and Services provided (year to date)")
 payment_mode_consolidated_df = pd.DataFrame()
 
 # Specify the group names that we want to filter by
@@ -452,13 +444,11 @@ payment_mode_summary_df = payment_mode_consolidated_df[payment_mode_consolidated
 # Ensure numeric columns are summed and non-numeric columns are handled separately
 payment_mode_summary_df = payment_mode_summary_df.groupby('Mode of payment')[numeric_columns].sum()
 
-st.write(payment_mode_summary_df)
 
 
 #############################################################################################################################
 
 # Initialize an empty DataFrame
-st.write("Suspicious and Large Cash Transaction Reports (year to date)")
 cash_trans_consolidated_df = pd.DataFrame()
 
 # Specify the group names that we want to filter by
@@ -519,11 +509,9 @@ cash_trans_summary_df = cash_trans_consolidated_df[cash_trans_consolidated_df['S
 # Ensure numeric columns are summed and non-numeric columns are handled separately
 cash_trans_summary_df = cash_trans_summary_df.groupby('Suspicious and Large Cash Transaction')[numeric_columns].sum()
 
-st.write(cash_trans_summary_df)
 
 
 ####################################################################################################################################
-st.write("INHERENT RISK FACTORS")
 customers_combined_df = pd.DataFrame()
 
 # Specify the group names that we want to filter by
@@ -584,7 +572,7 @@ customers_summary_df = customers_combined_df[customers_combined_df['customers'].
 # Ensure numeric columns are summed and non-numeric columns are handled separately
 customers_summary_df = customers_summary_df.groupby('customers')[numeric_columns].sum()
 
-st.write(customers_summary_df)
+
 
 
 #############################################################################################################################################################
@@ -622,9 +610,33 @@ with col2:
     ax2.axis("equal")
     plt.title("USD Business by Product", fontsize=10)
     st.pyplot(fig2)
+##################################################################################################################################################################
+st.write("Use of Intermediaries")
+st.write(Inter_df.head())
+st.write(Inter_grouped_df)
 
 
+st.write("Geographic Location of Clients (as at the end of the reporting period)")
+st.write(geoloc_df)
+st.write(summary_geoloc_df)
 
+st.write("Products & Services Offered (as at the end of the reporting period)")
+st.write(products_summary_df)
+
+st.write(" Source of Funds")
+st.write(source_of_funds_summary_df)
+
+
+st.write("Mode of Payment by Customer for Products and Services provided (year to date)")
+st.write(payment_mode_summary_df)
+
+
+st.write("Suspicious and Large Cash Transaction Reports (year to date)")
+st.write(cash_trans_summary_df)
+
+
+st.write("INHERENT RISK FACTORS")
+st.write(customers_summary_df)
 #################################################################################################################################################################
 import pandas as pd
 import streamlit as st
