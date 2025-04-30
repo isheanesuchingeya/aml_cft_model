@@ -687,7 +687,7 @@ st.title("Download Summaries Excel File")
 
 # Create the Excel file in memory
 output_summaries = BytesIO()
-with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+with pd.ExcelWriter(output_summaries, engine='xlsxwriter') as writer:
     for name, df in combined_summaries_workbook.items():
         # Even if df is empty, create the sheet (optional: you can skip empty dfs if you prefer)
         if df is not None:
