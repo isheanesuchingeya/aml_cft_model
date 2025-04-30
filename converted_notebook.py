@@ -63,8 +63,10 @@ elif page == "About":
         <li>Carry out data analysis and data cleaning.</li>
         <li>Generate a mini report for the findings.</li>
     </ul>
-    **Contact:** actuarial@ipec.co.zw  
-    **Version:** 1.0 (April 2025)
+        Contact: actuarial@ipec.co.zw  
+
+        
+        Version: 1.0 (April 2025)
     """, unsafe_allow_html=True)
 
 elif page == "Excel Consolidator":
