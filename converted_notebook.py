@@ -621,31 +621,31 @@ with col2:
     plt.title("USD Business by Product", fontsize=10)
     st.pyplot(fig2)
 ##################################################################################################################################################################
-st.write("Use of Intermediaries")
+st.write("# Use of Intermediaries 🤝")
 st.write(Inter_df.head())
 st.write(Inter_grouped_df)
 
 
-st.write("Geographic Location of Clients (as at the end of the reporting period)")
+st.write("# Geographic Location of Clients 🌍 (as at the end of the reporting period)")
 st.write(geoloc_df)
 st.write(summary_geoloc_df)
 
-st.write("Products & Services Offered (as at the end of the reporting period)")
+st.write("## Products & Services Offered 📦 (as at the end of the reporting period)")
 st.write(products_summary_df)
 
-st.write(" Source of Funds")
+st.write("## Source of Funds 💰")
 st.write(source_of_funds_summary_df)
 
 
-st.write("Mode of Payment by Customer for Products and Services provided (year to date)")
+st.write("## Mode of Payment by Customer for Products and Services Provided 💳 (year to date)")
 st.write(payment_mode_summary_df)
 
 
-st.write("Suspicious and Large Cash Transaction Reports (year to date)")
+st.write("## Suspicious and Large Cash Transaction Reports 🚨 (year to date
 st.write(cash_trans_summary_df)
 
 
-st.write("INHERENT RISK FACTORS")
+st.write("## Inherent Risk Factors ⚠️")
 st.write(customers_summary_df)
 #################################################################################################################################################################
 import pandas as pd
