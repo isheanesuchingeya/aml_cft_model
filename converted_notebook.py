@@ -780,9 +780,7 @@ doc.add_heading('Use of Intermediaries', level=1)
 doc.add_paragraph(f"• Agents used: {agents_used}/12, Brokers: {brokers_used}, Bancassurance: {bancassurance_used}, Direct Clients: {direct_clients_used}")
 doc.add_paragraph(f"• ZiG via Agents: {zig_business_agents_percentage}%, USD via Agents: {usd_business_agents_percentage}%")
 doc.add_paragraph(f"• Direct Clients accounted for {zig_direct_clients_percentage}% of total business.")
-
 doc.add_heading('Visual Representations', level=2)
-
 # Function to add a plot to the Word document
 def add_plot_to_doc(fig):
     img_stream = BytesIO()
@@ -806,7 +804,6 @@ add_plot_to_doc(fig3)  # Bar chart figure
 word_stream = BytesIO()
 doc.save(word_stream)
 word_stream.seek(0)
-
 # Display feedback and button
 st.success("Word report generated successfully!")
 st.download_button(
@@ -830,7 +827,7 @@ st.sidebar.download_button(
     data=output,
     file_name="combined_workbook.xlsx",
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    key="combined_workbook_download"  # Unique key
+    key="combined_workbook_download" 
 )
 
 # Download button for Word Report
@@ -839,7 +836,7 @@ st.sidebar.download_button(
     data=word_stream,
     file_name="AML_CFT_Report_Third_Quarter_2024.docx",
     mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    key="word_report_download"  # Unique key
+    key="word_report_download"
 )
 
 # Download button for Summaries Excel File
