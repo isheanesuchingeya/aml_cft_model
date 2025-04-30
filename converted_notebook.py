@@ -687,3 +687,101 @@ st.download_button(
 )
 
 
+
+import random
+from docx import Document
+from io import BytesIO
+import streamlit as st
+
+# Generate random data (in real use, replace with your actual variables)
+companies_risk_profiled = round(random.random()*10, 1)
+total_companies = round(random.random()*10, 1)
+domestic_peps_percentage = round(random.random()*10, 1)
+domestic_peps_amount = round(random.random()*10, 1)
+domestic_peps_usd_percentage = round(random.random()*10, 1)
+domestic_peps_usd_amount = round(random.random()*10, 1)
+foreign_peps_reported = round(random.random()*10, 1)
+trusts_percentage = round(random.random()*10, 1)
+ngo_percentage = round(random.random()*10, 1)
+high_net_worth_percentage_zig = round(random.random()*10, 1)
+high_net_worth_percentage_usd = round(random.random()*10, 1)
+agents_used = round(random.random()*10, 1)
+brokers_used = round(random.random()*10, 1)
+bancassurance_used = round(random.random()*10, 1)
+direct_clients_used = round(random.random()*10, 1)
+zig_business_agents_percentage = round(random.random()*10, 1)
+usd_business_agents_percentage = round(random.random()*10, 1)
+zig_direct_clients_percentage = round(random.random()*10, 1)
+
+# Create a Word Document
+doc = Document()
+doc.add_heading('ANTI-MONEY LAUNDERING AND COMBATING THE FINANCING OF TERRORISM AND PROLIFERATION FINANCING', level=1)
+
+doc.add_paragraph("12 out of 12 life assurance companies submitted their third quarter 2024 AML/CFT/CPF returns.")
+
+doc.add_heading('INHERENT RISK FACTORS AND CONTROLS', level=2)
+doc.add_paragraph('The following observations were made from the submissions received during the quarter under review:')
+
+doc.add_heading('Client Risk', level=2)
+doc.add_paragraph(f"{companies_risk_profiled} out of {total_companies} entities risk-profiled their clients in the third quarter of 2024, an improvement from the ten reported for the corresponding period in 2023.")
+doc.add_paragraph(f"• Domestic PEPs constituted {domestic_peps_percentage}% of the ZiG business written from high-risk clients, amounting to ZiG{domestic_peps_amount}, and {domestic_peps_usd_percentage}% of the USD business of US${domestic_peps_usd_amount} during the quarter.")
+doc.add_paragraph(f"• {foreign_peps_reported} foreign PEPs were reported.")
+doc.add_paragraph(f"• Non-resident clients accounted for 52% of USD business and 78% of the USD high-risk clients. Notable USD business was realised from legal arrangements such as trusts accounting for {trusts_percentage}%, and non-governmental organisations {ngo_percentage}%.")
+doc.add_paragraph(f"• All life companies reported the presence of high net-worth individuals which accounted for {high_net_worth_percentage_zig}% and {high_net_worth_percentage_usd}% of ZiG and USD business respectively.")
+
+paragraph = doc.add_paragraph()
+paragraph.add_run("The following chart shows the ZiG and USD business by client risk categories:").bold = True
+
+doc.add_paragraph(f"The ZiG{domestic_peps_amount} and US${domestic_peps_usd_amount} amounts refer to high-risk clients only and not the total gross premium.")
+
+doc.add_heading('Product Risk', level=2)
+doc.add_paragraph('• Products with low exposure to money laundering risk continue to dominate the market.')
+doc.add_paragraph('• Funeral products accounted for 73% of gross written premiums combined in ZiG terms.')
+doc.add_paragraph('• Group Life Assurance accounted for 15%.')
+doc.add_paragraph('• Conventional life assurance products which are more susceptible to money laundering risk accounted for 12% of premiums.')
+
+doc.add_heading('Figure XX: Share of Business Written by Products', level=2)
+
+doc.add_heading('Use of Intermediaries', level=1)
+doc.add_paragraph("• Life assurers largely rely on agents to sell policies.")
+doc.add_paragraph(f"• A total of {agents_used} out of 12 entities indicated use of agents.")
+doc.add_paragraph(f"• {brokers_used} entities obtain business from brokers.")
+doc.add_paragraph(f"• {bancassurance_used} entities use bancassurance.")
+doc.add_paragraph(f"• {direct_clients_used} entity/ies had direct clients exclusively.")
+doc.add_paragraph(f"• About {zig_business_agents_percentage}% of ZiG denominated business was from agents.")
+doc.add_paragraph(f"• For USD business, agents accounted for {usd_business_agents_percentage}% of gross premium written.")
+doc.add_paragraph(f"• Direct clients accounted for {zig_direct_clients_percentage}% of total business written in both ZiG and USD currencies.")
+
+# Save the document to a BytesIO stream
+word_stream = BytesIO()
+doc.save(word_stream)
+word_stream.seek(0)
+
+# Streamlit download button
+st.title("Download AML/CFT Word Report")
+st.download_button(
+    label="Download Word Report",
+    data=word_stream,
+    file_name="AML_CFT_Report_Third_Quarter_2024.docx",
+    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
