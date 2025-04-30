@@ -620,7 +620,7 @@ st.write(Inter_df.head())
 st.write(Inter_grouped_df)
 
 
-st.write("# Geographic Location of Clients 🌍 (as at the end of the reporting period)")
+st.write("# Geographic Location of Clients 🌍")
 st.write(geoloc_df)
 st.write(summary_geoloc_df)
 
