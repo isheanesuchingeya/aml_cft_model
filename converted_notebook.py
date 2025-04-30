@@ -620,6 +620,28 @@ with col2:
     ax2.axis("equal")
     plt.title("USD Business by Product", fontsize=10)
     st.pyplot(fig2)
+
+
+
+# Bar chart below the pie charts
+filtered_df = customers_summary_df[
+    (customers_summary_df["total amount ZWL"] > 0) | 
+    (customers_summary_df["total amount USD"] > 0)
+]
+x = np.arange(len(filtered_df))
+width = 0.35  
+fig3, ax3 = plt.subplots(figsize=(8, 4))  # Adjusted size for the bar chart
+bar1 = ax3.bar(x - width/2, filtered_df["total amount ZWL"] / 1e9, width, label='ZiG', color='blue')
+bar2 = ax3.bar(x + width/2, filtered_df["total amount USD"] / 1e6, width, label='USD', color='red')
+
+ax3.set_ylabel('Amounts (ZiG in Billions, USD in Millions)')
+ax3.set_title('ZiG and USD Business by Client Risk Categories')
+ax3.set_xticks(x)
+ax3.set_xticklabels(filtered_df["customers"], rotation=45, ha='right')
+ax3.legend()
+
+plt.tight_layout()
+st.pyplot(fig3)  # Display the bar chart in the app
 ##################################################################################################################################################################
 st.write("# Use of Intermediaries 🤝")
 st.write(Inter_df.head())
