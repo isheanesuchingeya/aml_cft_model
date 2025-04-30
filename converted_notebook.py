@@ -587,48 +587,45 @@ customers_summary_df = customers_summary_df.groupby('customers')[numeric_columns
 st.write(customers_summary_df)
 
 
-
-
-# Sort the DataFrame for ZWL amounts and select the top 5
+#############################################################################################################################################################
+# Sort DataFrames
 top_zwl_df = products_summary_df.sort_values("total amount ZWL", ascending=False).head(5)
-
-# Create a pie chart for ZWL amounts
-fig, ax = plt.subplots(figsize=(8, 6))
-wedges, texts, autotexts = ax.pie(
-    top_zwl_df["total amount ZWL"],
-    labels=top_zwl_df["Products"],
-    autopct="%1.0f%%",
-    startangle=90
-)
-ax.axis("equal")  # Equal aspect ratio ensures pie chart is circular
-plt.title("Share of ZWL Business Written by Product", fontsize=14)
-plt.tight_layout()
-
-# Display the plot in Streamlit
-st.pyplot(fig)  # Use st.pyplot to show the figure in Streamlit
-
-st.write("USD Amount")
-
-# Sort the DataFrame for USD amounts and select the top 5
 top_usd_df = products_summary_df.sort_values("total amount USD", ascending=False).head(5)
 
-# Create a pie chart for USD amounts
-fig, ax = plt.subplots(figsize=(8, 6))
-wedges, texts, autotexts = ax.pie(
-    top_usd_df["total amount USD"],
-    labels=top_usd_df["Products"],
-    autopct="%1.0f%%",
-    startangle=90
-)
-ax.axis("equal")  # Equal aspect ratio ensures pie chart is circular
-plt.title("Share of USD Business Written by Product", fontsize=14)
-plt.tight_layout()
+# Create two columns
+col1, col2 = st.columns(2)
 
-# Display the plot in Streamlit
-st.pyplot(fig)  # Use st.pyplot to show the figure in Streamlit
+# Pie chart for ZWL
+with col1:
+    fig1, ax1 = plt.subplots(figsize=(4, 4))  # Smaller figure
+    wedges, texts, autotexts = ax1.pie(
+        top_zwl_df["total amount ZWL"],
+        labels=top_zwl_df["Products"],
+        autopct="%1.0f%%",
+        startangle=90,
+        textprops={'fontsize': 8}  # Smaller font
+    )
+    ax1.axis("equal")
+    plt.title("ZWL Business by Product", fontsize=10)
+    st.pyplot(fig1)
+
+# Pie chart for USD
+with col2:
+    fig2, ax2 = plt.subplots(figsize=(4, 4))  # Smaller figure
+    wedges, texts, autotexts = ax2.pie(
+        top_usd_df["total amount USD"],
+        labels=top_usd_df["Products"],
+        autopct="%1.0f%%",
+        startangle=90,
+        textprops={'fontsize': 8}  # Smaller font
+    )
+    ax2.axis("equal")
+    plt.title("USD Business by Product", fontsize=10)
+    st.pyplot(fig2)
 
 
 
+#################################################################################################################################################################
 import pandas as pd
 import streamlit as st
 from io import BytesIO
