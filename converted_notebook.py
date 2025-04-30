@@ -601,10 +601,10 @@ with col1:
         labels=top_zwl_df["Products"],
         autopct="%1.0f%%",
         startangle=90,
-        textprops={'fontsize': 8}  # Smaller font
+        textprops={'fontsize': 4}  # Smaller font
     )
     ax1.axis("equal")
-    plt.title("ZWL Business by Product", fontsize=10)
+    plt.title("ZWL Business by Product", fontsize=5)
     st.pyplot(fig1)
 
 # Pie chart for USD
@@ -615,10 +615,10 @@ with col2:
         labels=top_usd_df["Products"],
         autopct="%1.0f%%",
         startangle=90,
-        textprops={'fontsize': 8}  # Smaller font
+        textprops={'fontsize': 4}  # Smaller font
     )
     ax2.axis("equal")
-    plt.title("USD Business by Product", fontsize=10)
+    plt.title("USD Business by Product", fontsize=5)
     st.pyplot(fig2)
 
 
@@ -634,8 +634,8 @@ fig3, ax3 = plt.subplots(figsize=(6, 4))  # Adjusted size for the bar chart
 bar1 = ax3.bar(x - width/2, filtered_df["total amount ZWL"] / 1e9, width, label='ZiG', color='blue')
 bar2 = ax3.bar(x + width/2, filtered_df["total amount USD"] / 1e6, width, label='USD', color='red')
 
-ax3.set_ylabel('Amounts (ZiG in Billions, USD in Millions)')
-ax3.set_title('ZiG and USD Business by Client Risk Categories')
+ax3.set_ylabel('Amounts (ZiG in Billions, USD in Millions)',fontsize = 5)
+ax3.set_title('ZiG and USD Business by Client Risk Categories', fontsize =5 )
 ax3.set_xticks(x)
 ax3.set_xticklabels(filtered_df["customers"], rotation=45, ha='right')
 ax3.legend()
