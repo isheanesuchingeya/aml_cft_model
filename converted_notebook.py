@@ -777,21 +777,16 @@ doc.add_heading('Use of Intermediaries', level=1)
 doc.add_paragraph(f"• Agents used: {agents_used}/12, Brokers: {brokers_used}, Bancassurance: {bancassurance_used}, Direct Clients: {direct_clients_used}")
 doc.add_paragraph(f"• ZiG via Agents: {zig_business_agents_percentage}%, USD via Agents: {usd_business_agents_percentage}%")
 doc.add_paragraph(f"• Direct Clients accounted for {zig_direct_clients_percentage}% of total business.")
-
-# Add section for plots
 doc.add_heading('Visual Representations', level=2)
-
 # Function to add a plot to the Word document
 def add_plot_to_doc(fig):
     img_stream = BytesIO()
     fig.savefig(img_stream, format='png', bbox_inches='tight')
     img_stream.seek(0)
     doc.add_picture(img_stream)
-
 # Add Pie Chart for ZWL
 doc.add_heading("ZWL Business by Product", level=3)
 add_plot_to_doc(fig1)  # ZWL pie chart figure
-
 # Add Pie Chart for USD
 doc.add_heading("USD Business by Product", level=3)
 add_plot_to_doc(fig2)  # USD pie chart figure
@@ -799,12 +794,10 @@ add_plot_to_doc(fig2)  # USD pie chart figure
 # Add Bar Chart for Client Risk Categories
 doc.add_heading("ZiG and USD Business by Client Risk Categories", level=3)
 add_plot_to_doc(fig3)  # Bar chart figure
-
 # Save document
 word_stream = BytesIO()
 doc.save(word_stream)
 word_stream.seek(0)
-
 # Display feedback and button
 st.success("Word report generated successfully!")
 st.download_button(
