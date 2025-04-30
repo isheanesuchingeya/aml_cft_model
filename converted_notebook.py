@@ -56,7 +56,11 @@ elif page == "About":
     st.title("About This App")
     st.markdown("""
     Developed by the **Actuarial Team**.  
-    Purpose: Combine multiple pension-related Excel files automatically into a single file for easy analysis.  
+    Purpose: Consolidate multiple AML CFT returns from industry submissions for Global Reporting.
+             Extract key information for futher analysis.
+             Carries out data Analysis and Data cleaning
+             Generates a Mini report for the Findings
+             
     **Contact:** actuarial@ipec.co.zw  
     **Version:** 1.0 (April 2025)
     """)
