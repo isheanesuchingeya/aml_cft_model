@@ -265,7 +265,7 @@ st.write(geoloc_df)
 st.write(summary_geoloc_df)
 
 
-#########################################################################################################################################
+##########################################################################################################################################
 st.write("Products & Services Offered (as at the end of the reporting period)")
 products_combined_df = pd.DataFrame()
 # Specify the group names that we want to filter by
