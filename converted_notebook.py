@@ -196,7 +196,7 @@ def fuzzy_match(row_value, group_names):
 Inter_grouped_df = Inter_df[Inter_df['use of intermediaries'].apply(lambda x: fuzzy_match(str(x), group_names))]
 
 # Ensure numeric columns are summed and non-numeric columns are handled separately
-Inter_grouped_df = Inter_grouped_df.groupby('use of intermediaries')[numeric_columns].sum()
+Inter_grouped_df = Inter_grouped_df.groupby('use of intermediaries')[numeric_columns].sum().reset_index()
 
 
 Inter_grouped_df = Inter_grouped_df.reset_index()
@@ -261,7 +261,7 @@ def fuzzy_match(row_value, group_names):
 summary_geoloc_df = geoloc_df[geoloc_df['Geographic location of Clients'].apply(lambda x: fuzzy_match(str(x), group_names))]
 
 # Ensure numeric columns are summed and non-numeric columns are handled separately
-summary_geoloc_df = summary_geoloc_df.groupby('Geographic location of Clients')[numeric_columns].sum()
+summary_geoloc_df = summary_geoloc_df.groupby('Geographic location of Clients')[numeric_columns].sum().reset_index()
 
 
 
@@ -383,7 +383,7 @@ def fuzzy_match(row_value, group_names):
 source_of_funds_summary_df = source_of_funds_consolidated_df[source_of_funds_consolidated_df['Source of funds'].apply(lambda x: fuzzy_match(str(x), group_names))]
 
 # Ensure numeric columns are summed and non-numeric columns are handled separately
-source_of_funds_summary_df = source_of_funds_summary_df.groupby('Source of funds')[numeric_columns].sum()
+source_of_funds_summary_df = source_of_funds_summary_df.groupby('Source of funds')[numeric_columns].sum().reset_index()
 
 #######################################################################################################################################
 # Initialize an empty DataFrame
@@ -445,7 +445,7 @@ def fuzzy_match(row_value, group_names):
 payment_mode_summary_df = payment_mode_consolidated_df[payment_mode_consolidated_df['Mode of payment'].apply(lambda x: fuzzy_match(str(x), group_names))]
 
 # Ensure numeric columns are summed and non-numeric columns are handled separately
-payment_mode_summary_df = payment_mode_summary_df.groupby('Mode of payment')[numeric_columns].sum()
+payment_mode_summary_df = payment_mode_summary_df.groupby('Mode of payment')[numeric_columns].sum().reset_index()
 
 
 
@@ -510,7 +510,7 @@ def fuzzy_match(row_value, group_names):
 cash_trans_summary_df = cash_trans_consolidated_df[cash_trans_consolidated_df['Suspicious and Large Cash Transaction'].apply(lambda x: fuzzy_match(str(x), group_names))]
 
 # Ensure numeric columns are summed and non-numeric columns are handled separately
-cash_trans_summary_df = cash_trans_summary_df.groupby('Suspicious and Large Cash Transaction')[numeric_columns].sum()
+cash_trans_summary_df = cash_trans_summary_df.groupby('Suspicious and Large Cash Transaction')[numeric_columns].sum().reset_index()
 
 
 
@@ -573,7 +573,7 @@ def fuzzy_match(row_value, group_names):
 customers_summary_df = customers_combined_df[customers_combined_df['customers'].apply(lambda x: fuzzy_match(str(x), group_names))]
 
 # Ensure numeric columns are summed and non-numeric columns are handled separately
-customers_summary_df = customers_summary_df.groupby('customers')[numeric_columns].sum()
+customers_summary_df = customers_summary_df.groupby('customers')[numeric_columns].sum().reset_index()
 
 
 
