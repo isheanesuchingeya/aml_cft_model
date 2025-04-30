@@ -624,18 +624,18 @@ st.write("# Geographic Location of Clients 🌍")
 st.write(geoloc_df)
 st.write(summary_geoloc_df)
 
-st.write("## Products & Services Offered 📦 (as at the end of the reporting period)")
+st.write("## Products & Services Offered 📦")
 st.write(products_summary_df)
 
 st.write("## Source of Funds 💰")
 st.write(source_of_funds_summary_df)
 
 
-st.write("## Mode of Payment by Customer for Products and Services Provided 💳 (year to date)")
+st.write("## Mode of Payment by Customer for Products and Services Provided 💳 (Y.T.D)")
 st.write(payment_mode_summary_df)
 
 
-st.write("## Suspicious and Large Cash Transaction Reports 🚨 (year to date)")
+st.write("## Suspicious and Large Cash Transaction Reports 🚨 (Y.T.D)")
 st.write(cash_trans_summary_df)
 
 
