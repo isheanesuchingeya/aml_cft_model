@@ -693,10 +693,6 @@ from docx import Document
 from io import BytesIO
 import streamlit as st
 
-# Set up Streamlit page
-st.set_page_config(page_title="AML/CFT Report Generator", layout="centered")
-st.title("AML/CFT Word Report Generator")
-
 # Generate random data
 companies_risk_profiled = round(random.random()*10, 1)
 total_companies = round(random.random()*10, 1)
