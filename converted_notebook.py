@@ -56,7 +56,7 @@ elif page == "About":
     st.title("About This App")
     st.markdown("""
     Developed by the **Actuarial Team**.  
-    Purpose:
+    **Purpose:**
     <ul>
         <li>Consolidate multiple AML CFT returns from industry submissions for Global Reporting.</li>
         <li>Extract key information for further analysis.</li>
@@ -65,7 +65,7 @@ elif page == "About":
     </ul>
     **Contact:** actuarial@ipec.co.zw  
     **Version:** 1.0 (April 2025)
-    """)
+    """, unsafe_allow_html=True)
 
 elif page == "Excel Consolidator":
     st.title("AML CFT 🛡️💵🔍🚫")
