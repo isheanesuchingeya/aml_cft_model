@@ -56,11 +56,13 @@ elif page == "About":
     st.title("About This App")
     st.markdown("""
     Developed by the **Actuarial Team**.  
-    Purpose: Consolidate multiple AML CFT returns from industry submissions for Global Reporting.
-             Extract key information for futher analysis.
-             Carries out data Analysis and Data cleaning
-             Generates a Mini report for the Findings
-             
+    Purpose:
+    <ul>
+        <li>Consolidate multiple AML CFT returns from industry submissions for Global Reporting.</li>
+        <li>Extract key information for further analysis.</li>
+        <li>Carry out data analysis and data cleaning.</li>
+        <li>Generate a mini report for the findings.</li>
+    </ul>
     **Contact:** actuarial@ipec.co.zw  
     **Version:** 1.0 (April 2025)
     """)
