@@ -62,7 +62,7 @@ elif page == "About":
     """)
 
 elif page == "Excel Consolidator":
-    st.title("Excel File Consolidator 📂")
+    st.title("AML CFT 🛡️💵🔍🚫")
     st.markdown("Upload multiple Excel files (they must have a sheet called 'sheet1'):")
     
     
