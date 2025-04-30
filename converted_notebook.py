@@ -79,48 +79,58 @@ submenu = st.sidebar.radio("Choose Analysis Category:", [
 if submenu == "👤 Customers":
     st.header("👤 Customer Analysis")
 
-    uploaded_files = st.file_uploader("Upload Excel files (.xlsx)", type=["xlsx"], accept_multiple_files=True)
+    # File uploader
+uploaded_files = st.file_uploader("Upload Excel files (.xlsx)", type=["xlsx"], accept_multiple_files=True)
 
-    if uploaded_files:
-        st.success(f"✅ {len(uploaded_files)} files uploaded successfully!")
+if uploaded_files:
+    st.success(f"✅ {len(uploaded_files)} files uploaded successfully!")
 
-        combined_workbook = openpyxl.Workbook()
-        combined_workbook.remove(combined_workbook.active)
+    combined_workbook = openpyxl.Workbook()
+    combined_workbook.remove(combined_workbook.active)
 
-        Inter_df = pd.DataFrame()
-        geoloc_df = pd.DataFrame()
-        # Initialize intermediary data holder
+    # Initialize intermediary data holder
+    for uploaded_file in uploaded_files:
+        try:
+            wb = load_workbook(uploaded_file, data_only=False)
+            filename = uploaded_file.name
 
-        for uploaded_file in uploaded_files:
-            try:
-                wb = load_workbook(uploaded_file, data_only=False)
-                filename = uploaded_file.name
+            if "sheet1" in wb.sheetnames:
+                sheet = wb["sheet1"]
+                new_sheet = combined_workbook.create_sheet(title=filename[:-5])
 
-                if "sheet1" in wb.sheetnames:
-                    sheet = wb["sheet1"]
-                    new_sheet = combined_workbook.create_sheet(title=filename[:-5])
+                for row in sheet.iter_rows():
+                    for cell in row:
+                        new_cell = new_sheet.cell(row=cell.row, column=cell.column, value=cell.value)
+                        if cell.has_style:
+                            new_cell.font = copy.copy(cell.font)
+                            new_cell.fill = copy.copy(cell.fill)
+                            new_cell.border = copy.copy(cell.border)
+                            new_cell.alignment = copy.copy(cell.alignment)
+                            new_cell.number_format = cell.number_format
 
-                    for row in sheet.iter_rows():
-                        for cell in row:
-                            new_cell = new_sheet.cell(row=cell.row, column=cell.column, value=cell.value)
-                            if cell.has_style:
-                                new_cell.font = copy.copy(cell.font)
-                                new_cell.fill = copy.copy(cell.fill)
-                                new_cell.border = copy.copy(cell.border)
-                                new_cell.alignment = copy.copy(cell.alignment)
-                                new_cell.number_format = cell.number_format
+                for merged_range in sheet.merged_cells.ranges:
+                    new_sheet.merge_cells(str(merged_range))
 
-                    for merged_range in sheet.merged_cells.ranges:
-                        new_sheet.merge_cells(str(merged_range))
+                st.success(f"✅ Successfully imported {filename} data")
+            else:
+                st.warning(f"⚠️ Skipping {uploaded_file.name} (No 'sheet1' found)")
 
-                    st.success(f"✅ Successfully imported {filename} data")
-                    
-                    
-                else:
-                    st.warning(f"⚠️ Skipping {uploaded_file.name} (No 'sheet1' found)")
+        except InvalidFileException:
+            st.error(f"❌ Skipping invalid file: {uploaded_file.name}")
 
-            except InvalidFileException:
-                st.error(f"❌ Skipping invalid file: {uploaded_file.name}")
+    # -------------------- Download Combined File --------------------
+    output = BytesIO()
+    combined_workbook.save(output)
+    output.seek(0)
+
+    # Suppress output display
+    with contextlib.redirect_stdout(BytesIO()):
+        st.download_button(
+            label="📥 Download Combined Workbook",
+            data=output,
+            file_name="combined_workbook.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
 
         # -------------------- Download Combined File --------------------
         output = BytesIO()
