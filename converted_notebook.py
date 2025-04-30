@@ -64,8 +64,6 @@ elif page == "About":
         <li>Generate a mini report for the findings.</li>
     </ul>
         Contact: actuarial@ipec.co.zw  
-
-        
         Version: 1.0 (April 2025)
     """, unsafe_allow_html=True)
 
